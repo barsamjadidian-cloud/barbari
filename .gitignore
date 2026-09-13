@@ -1,0 +1,22 @@
+node_modules
+.next
+out
+dist
+.env.local
+.env.production
+data.db
+data.db-journal
+uploads
+*.log
+.DS_Store
+.vercel
+coverage
+
+# Never track environment secrets or generated static builds
+.env
+.env.*
+!.env.example
+.pages-site/
+playwright-report/
+test-results/
+*.tsbuildinfo
