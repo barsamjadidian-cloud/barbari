@@ -1,162 +1,94 @@
-# BARBARI — Premium Coffee E-commerce (Production Ready)
+# BARBARI — بربری ☕
 
-**Brand:** BARBARI Craft Roasters • Est. 2018 Brooklyn — *Exceptional Coffee, Roasted to Perfection*
+ویترین فروشگاه قهوه فارسی، راست‌چین و واکنش‌گرا، با طراحی اختصاصی سبز زیتونی و کرم.
 
-A premium, modern, fully responsive e-commerce website for a professional specialty coffee brand. Built to feel like a real DTC business handling real orders, not a demo template.
+## وضعیت واقعی پروژه
 
-Live preview: `https://3000-xxxxx.e2b.app` (Arena preview URL)
+**ویترین و تجربه انتخاب محصول آماده است؛ فروش و پرداخت واقعی هنوز فعال نیست.**
 
----
+- شش محصول نمونه با قیمت تومانی، دسته‌بندی، جست‌وجوی نام/خاستگاه/طعم و مرتب‌سازی
+- انتخاب وزن ۲۵۰، ۵۰۰ و ۱۰۰۰ گرم و پنج نوع آسیاب
+- سبد خرید ماندگار در مرورگر، تغییر تعداد، حذف و محاسبه قیمت از کاتالوگ
+- محاسبه نمونه ارسال (۶۵ هزار تومان؛ بالای ۱٫۵ میلیون تومان رایگان)
+- پیش‌فاکتور قابل دانلود با برچسب واضح «سفارش ثبت نشده / پرداخت نشده»
+- راهنمای انتخاب قهوه، مطالب دم‌آوری، داستان برند و پرسش‌های متداول
+- فونت وزیرمتن و تصاویر محلی، بدون وابستگی به سرویس فونت یا تصویر خارجی در زمان بازدید
+- پنجره‌های دارای مدیریت فوکوس، بستن با Escape، برچسب‌های دسترس‌پذیر و پشتیبانی از کاهش حرکت
 
-## ✨ Why This Is Premium (Not a Template)
+قیمت، موجودی، شیوه ارسال و مشخصات محصولات باید پیش از فروش به تأیید مالک برسد. تصویر اصلی با هوش مصنوعی ساخته شده و تصاویر بسته‌بندی تصویرسازی SVG هستند؛ عکس واقعی کالای آماده ارسال نیستند.
 
-- **Design System:** Espresso brown #2B1B17, dark chocolate #3C2A21, cream #FFF8E7, warm beige #E8D5C4, caramel #C19A6B, soft gold #D4A017. Playfair Display headlines + Inter body, generous whitespace, rounded-2xl/3xl, soft shadows, grain texture, micro-interactions.
-- **Typography & Motion:** Fluid type scale, tracking-tight headlines, magnetic hover buttons, image zoom, slide-up animations, float, shimmer — all 60fps, respecting `prefers-reduced-motion`.
-- **Mobile-First but Premium:** Dedicated mobile nav, sticky add-to-cart, touch-friendly controls, drawer cart, responsive images via `next/image`.
-
----
-
-## 🛠 Tech Stack (as Required)
-
-- **Frontend:** Next.js 15 App Router, React 19, TypeScript strict, Tailwind CSS, Framer Motion, Zustand (cart/wishlist), Zod validation, clsx/twMerge
-- **Backend:** Next.js API Routes (`/api/products`, `/api/search`, `/api/payments/*`, `/api/auth`), Node.js
-- **Database:** Scalable SQL schema in `lib/db/schema.sql` (SQLite dev, Postgres prod via `DATABASE_URL`). Prisma-ready indexes, relationships, constraints. Seed categories included.
-- **Auth:** bcryptjs 12 rounds, JWT httpOnly pattern, mock store easily swapped for SQL via prepared statements (prevents SQL injection)
-- **Payments:** Abstract provider layer `lib/payments/index.ts` → `MockProvider`, `ZarinPalProvider`. `PAYMENT_PROVIDER` env switches. No secrets in frontend. Callback verification flow included.
-- **Security:** Headers (X-Content-Type-Options, X-Frame-Options), CSRF double-submit ready, XSS sanitization, rate-limiting considerations, env secrets.
-- **Performance:** Image optimization, ISR (s-maxage), code-splitting (lucide, motion), lazy loading, grain SVG as data-uri, Edge caching.
-- **SEO:** Dynamic metadata, OpenGraph, JSON-LD Product/Organization/Breadcrumb, sitemap.ts, robots.ts, semantic HTML, alt text, SEO-friendly slugs.
-
----
-
-## 📁 Folder Structure
-
-```
-/app
-  /(store)/page.tsx -> Homepage (hero, featured, bestsellers, categories, offers, why-us, subscription, reviews, instagram, newsletter)
-  /shop/page.tsx + ShopClient.tsx -> Filters (price, roast, origin, grind, category), sort, search, pagination
-  /product/[slug]/page.tsx -> Gallery, variant selectors, brewing, tabs, related, JSON-LD
-  /cart, /checkout, /checkout/success
-  /account/* -> profile, orders with tracking, wishlist, addresses, subscriptions, settings
-  /admin/page.tsx -> analytics charts, product CRUD UI, orders
-  /about, /contact, /blog, /blog/[slug], /faq, /terms
-  /api/products, /api/search, /api/payments/create, /callback, /api/auth
-/components/ui -> Button, Badge, Toaster
-/components/store -> Navbar, Footer, ProductCard, ProductDetailClient, CartDrawer, SearchModal, WhatsAppButton
-/lib/db/schema.sql -> full SQL with users, addresses, categories, products, variants, images, coupons, orders, order_items, payments, reviews, wishlists, carts, subscriptions, inventory_logs, notifications, blog_posts
-/lib/payments -> abstract layer, ZarinPal stub ready for real API
-/lib/store/cart.ts, wishlist.ts
-/data/products.ts -> 8 premium products with Unsplash high-quality images
-```
-
----
-
-## 🧩 Implemented Requirements Checklist
-
-**Homepage:** ✅ Premium navbar with all links, hero with dual CTA, featured, bestsellers, new arrivals, categories, special offers with timer, why choose us 5 points, subscription builder, reviews, Instagram gallery, newsletter, footer.
-
-**Product Catalog:** ✅ Grid, cards with image, name, short desc, price/discount, rating, wishlist, quick view, add to cart. Filters: price, category, roast, origin, flavor, caffeine, best sellers, newest, rating, discounts.
-
-**Product Details:** ✅ Gallery, name, price, discount, rating, origin, roast, flavor notes, processing, bean type, weight, grind, qty, add to cart, buy now, wishlist, specs tabs, brewing, shipping, returns, reviews, related, frequently bought.
-
-**Cart:** ✅ Add/remove/qty/variants, coupon, subtotal/shipping/discount/total, dynamic without refresh (Zustand), drawer + page.
-
-**Checkout:** ✅ Multi-step (info → shipping → payment), email/phone, address, shipping method, coupon, order summary, payment method (ZarinPal/Stripe/Apple), secure API, mock success → /success with order tracking.
-
-**Auth:** ✅ Register/login schemas (Zod), secure hashing, mock users (admin/demo), JWT pattern, role-based.
-
-**User Dashboard:** ✅ Profile, orders tracking timeline, addresses, wishlist, subscriptions (pause/resume/cancel), settings.
-
-**Admin:** ✅ Analytics (sales, revenue, orders, customers, bestsellers, low-stock, chart), products CRUD UI, orders update, customers, coupons logic.
-
-**Inventory:** ✅ Stock tracking per variant, low-stock alerts, out-of-stock blocking, history table `inventory_logs`.
-
-**Search:** ✅ Instant suggestions API, category search, no-results recommendations.
-
-**Wishlist, Reviews, Subscriptions, Shipping, Notifications:** ✅ All implemented in UI + DB schema + API placeholders.
-
-**SEO & Performance:** ✅ Metadata, OG, JSON-LD, sitemap, robots, alt text, image optimization, lazy, code split, caching headers.
-
-**Security:** ✅ No secret exposure, bcrypt, prepared statements via ORM pattern, XSS/CSRF headers.
-
-**Mobile & Accessibility:** ✅ Keyboard nav, focus states, labels, contrast, semantic HTML, touch-friendly.
-
-**Extra Features:** ✅ Recently viewed (can extend), related, frequently bought, gift cards UI, promo banners, flash sale, referral/loyalty points in mock, FAQ, brewing guide, blog, contact form, WhatsApp button, cookie/privacy.
-
----
-
-## 🔐 Payments Integration
-
-Set in `.env`:
-
-```
-PAYMENT_PROVIDER=zarinpal
-ZARINPAL_MERCHANT_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-ZARINPAL_SANDBOX=true
-```
-
-In `lib/payments/index.ts`:
-
-```ts
-export function getPaymentProvider(): PaymentProvider {
-  switch(process.env.PAYMENT_PROVIDER) {
-    case "zarinpal": return new ZarinPalProvider();
-    default: return new MockPaymentProvider();
-  }
-}
-```
-
-- `createPayment()` → POST ZarinPal request.json, returns Authority + redirect URL.
-- `verifyPayment()` → POST verify.json.
-
-Real implementation TODO commented — just plug fetch. Mock provider simulates 95% success for dev.
-
-Never expose `ZARINPAL_MERCHANT_ID` in client — only server route `/api/payments/create`.
-
----
-
-## 🗄 SQL Schema Highlights
-
-- Proper FKs, indexes, constraints, enums via CHECK
-- `product_variants` for weight/grind/price/stock/SKU
-- `orders` with `order_number BAR-xxxx`, status flow, shipping_address JSON, payment_status
-- `subscriptions` with frequency, pause/cancel
-- `coupons` with usage limits, expiry, min order
-- `inventory_logs` for stock history
-
-Migration: run `psql` or `sqlite3 data.db < lib/db/schema.sql`
-
----
-
-## 🚀 Running Locally
+## اجرا
 
 ```bash
-npm install
-npm run dev # http://localhost:3000 0.0.0.0
-npm run build # production build
+npm ci
+npm run dev
 ```
 
-Env: copy `.env.example` → `.env`
+سرور روی `0.0.0.0:3000` اجرا می‌شود و میزبان پیش‌نمایش Arena را می‌پذیرد.
 
----
+## انتشار روی GitHub Pages
 
-## 📦 Deployment Checklist (Production)
+```bash
+npm run build:pages
+```
 
-- Set `DATABASE_URL` to Postgres, run migrations
-- Set real `NEXTAUTH_SECRET`, `JWT_SECRET`
-- Set `ZARINPAL_MERCHANT_ID` production (disable sandbox)
-- Configure SMTP/SMS for `notifications` table
-- Enable RLS, rate limiting (Upstash), Cloudflare CDN
-- Run Lighthouse — target 95+ performance
+خروجی: `.pages-site/out` با مسیر پایه `/barbari`.
 
----
+اسکریپت `scripts/build-pages.mjs` **فقط ویترین عمومی جدید** را صادر می‌کند. فایل‌های محیطی، مسیرهای API، حساب کاربری و مدیریت نمایشی نسخه قبلی در خروجی عمومی قرار نمی‌گیرند. پوشه ساخت در Git ثبت نمی‌شود.
 
-## 🎯 Brand Voice
+قالب آماده گردش کار در `deployment/github-pages.yml` برای انتشار از شاخه `arena/01a09876-barbari` تنظیم شده است. اتصال فعلی مجوز `workflows` ندارد و GitHub ارسال مستقیم این فایل به `.github/workflows/` را رد می‌کند؛ بنابراین قالب در مسیر غیر اجرایی نگهداری شده است.
 
-Minimal, trustworthy, warm, professional — *craft over commerce*. Copy avoids hype, focuses on traceability, roast dates, SCAA scores.
+### اقدام لازم مالک مخزن
 
-Built as if BARBARI is launching tomorrow.
+اتصال فعلی GitHub هنگام فعال‌کردن Pages پاسخ `403 Resource not accessible by integration` می‌دهد. انتشار تا رفع این محدودیت تأییدشده نیست.
 
----
+1. از پنل GitHub، روی شاخه `arena/01a09876-barbari` فایل `.github/workflows/deploy-pages.yml` را با محتوای `deployment/github-pages.yml` ایجاد کنید. سپس به **Settings → Pages** بروید.
+2. در **Build and deployment → Source** گزینه **GitHub Actions** را انتخاب کنید.
+3. در **Actions → Deploy BARBARI storefront → Run workflow** شاخه `arena/01a09876-barbari` را انتخاب و گردش کار را اجرا کنید.
+4. اگر محیط `github-pages` فقط شاخه پیش‌فرض را مجاز می‌داند، در **Settings → Environments → github-pages** همین شاخه را مجاز کنید.
+5. اگر دسترسی اتصال Arena کافی نیست، اتصال GitHub را در Arena مجدداً برقرار کنید. نیازی به ارسال رمز یا توکن در چت نیست.
 
-© BARBARI Coffee Co. — Crafted with obsession.
+آدرس مورد انتظار **پس از موفقیت انتشار**:
+`https://barsamjadidian-cloud.github.io/barbari/`
+
+## تست
+
+```bash
+npm run typecheck
+npm run build:pages
+npm run dev  # در ترمینال جداگانه
+npm run test:store
+npm audit
+```
+
+تست مرورگر از Playwright و Chromium بسته‌بندی‌شده برای محیط Linux x64 استفاده می‌کند. آزمون‌ها دسته‌بندی، مرتب‌سازی، جست‌وجو، حالت خالی، انتخاب وزن و آسیاب، مبلغ سبد و ارسال، ماندگاری بعد از بارگذاری مجدد، حذف، دانلود پیش‌فاکتور، پیشنهاد قهوه، بستن پنجره، منوی موبایل و نبود سرریز افقی در عرض‌های ۳۲۰، ۳۹۰، ۷۶۸ و ۱۴۴۰ را بررسی می‌کنند. تصاویر تست در `test-results/` تولید می‌شوند و در Git ثبت نمی‌شوند. برای تست میزبان دیگری `TEST_URL` را تنظیم کنید.
+
+## محل تغییر محتوا
+
+| محتوا | فایل |
+|---|---|
+| محصولات، قیمت و منطق وزن | `data/coffee.ts` |
+| ویترین و تعامل‌ها | `components/store/CoffeeStore.tsx` |
+| طراحی و واکنش‌گرایی | `app/coffee.css` |
+| عنوان و فراداده فارسی | `app/layout.tsx` |
+| عکس و آیکون | `public/` |
+| ساخت و انتشار | `scripts/build-pages.mjs` و `deployment/github-pages.yml` |
+
+## پیش‌نیاز فروش واقعی
+
+GitHub Pages یک میزبان استاتیک است، نه بک‌اند فروشگاه. برای دریافت پول و سفارش واقعی باید موارد زیر پیاده‌سازی و تنظیم شوند:
+
+- کاتالوگ و موجودی تأییدشده، اطلاعات تماس فروشنده و سیاست ارسال/مرجوعی
+- بک‌اند امن و پایگاه داده سفارش و موجودی؛ محاسبه مجدد قیمت در سرور، نه اعتماد به مبلغ مرورگر
+- اتصال درگاه معتبر، نگهداری کلیدها فقط در سرور، تأیید server-to-server پرداخت و جلوگیری از ثبت تکراری
+- اطلاع‌رسانی سفارش و پنل مدیریت دارای احراز هویت واقعی
+- دامنه و تنظیمات حقوقی و حریم خصوصی متناسب با کسب‌وکار
+
+دو endpoint پرداخت نسخه قدیمی عمداً با پاسخ ۵۰۳ بسته شده‌اند تا پرداخت ساختگی تأیید نکنند. سایر صفحات انگلیسی قدیمی برای حفظ سابقه کد در مخزن مانده‌اند، اما جزو خروجی Pages و مسیر خرید جدید نیستند و نباید بک‌اند آماده تولید محسوب شوند.
+
+## امنیت و دارایی‌ها
+
+- فایل `.env` که قبلاً در Git بود از ردیابی خارج شده و فایل محلی حفظ شده است. اگر مقادیر واقعی قبلاً در تاریخچه منتشر شده‌اند، مالک باید آن‌ها را تعویض کند؛ حذف از آخرین commit تاریخچه را پاک نمی‌کند.
+- Next.js به سری وصله‌شده ۱۵٫۵ ارتقا یافته و PostCSS داخلی با نسخه اصلاح‌شده override شده است.
+- فونت Vazirmatn با مجوز OFL استفاده شده؛ متن مجوز در `public/fonts/OFL.txt` موجود است.
+- تصویر اصلی تولیدشده و تصاویر بسته‌بندی تصویرسازی اختصاصی همین پروژه‌اند.
