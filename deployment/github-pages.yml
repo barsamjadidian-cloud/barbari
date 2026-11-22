@@ -1,7 +1,7 @@
 name: Deploy BARBARI storefront
 on:
   push:
-    branches: [arena/01a09876-barbari]
+    branches: [arena/b384154e-barbari]
   workflow_dispatch:
 permissions:
   contents: read

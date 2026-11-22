@@ -1,6 +1,9 @@
-# BARBARI — بربری ☕
+# BARBARI — بربری
 
-ویترین فروشگاه قهوه فارسی، راست‌چین و واکنش‌گرا، با طراحی اختصاصی سبز زیتونی و کرم.
+این مخزن شامل ویترین فروشگاه قهوه و آکادمی تعاملی آموزش پایتون است. آکادمی در مسیر `public/python/` پیاده‌سازی شده و روی GitHub Pages در `/barbari/python/` منتشر می‌شود.
+
+- [باز کردن آکادمی پایتون](https://barsamjadidian-cloud.github.io/barbari/python/)
+- [صفحه اصلی ویترین قهوه](https://barsamjadidian-cloud.github.io/barbari/)
 
 ## وضعیت واقعی پروژه
 
@@ -34,22 +37,14 @@ npm run build:pages
 
 خروجی: `.pages-site/out` با مسیر پایه `/barbari`.
 
-اسکریپت `scripts/build-pages.mjs` **فقط ویترین عمومی جدید** را صادر می‌کند. فایل‌های محیطی، مسیرهای API، حساب کاربری و مدیریت نمایشی نسخه قبلی در خروجی عمومی قرار نمی‌گیرند. پوشه ساخت در Git ثبت نمی‌شود.
+اسکریپت `scripts/build-pages.mjs` خروجی استاتیک عمومی را می‌سازد و پوشه `public/` را در خروجی منتشر می‌کند؛ بنابراین آکادمی پایتون نیز همراه ویترین در دسترس خواهد بود. فایل‌های محیطی، مسیرهای API و صفحات خصوصی قدیمی وارد خروجی Pages نمی‌شوند. پوشه ساخت در Git ثبت نمی‌شود.
 
-قالب آماده گردش کار در `deployment/github-pages.yml` برای انتشار از شاخه `arena/01a09876-barbari` تنظیم شده است. اتصال فعلی مجوز `workflows` ندارد و GitHub ارسال مستقیم این فایل به `.github/workflows/` را رد می‌کند؛ بنابراین قالب در مسیر غیر اجرایی نگهداری شده است.
+گردش کار خودکار در `.github/workflows/deploy-pages.yml` از شاخه کاری جاری استفاده می‌کند. منبع Pages باید در **Settings → Pages → Build and deployment → Source** روی **GitHub Actions** باشد و مجوزهای Pages و محیط `github-pages` در مخزن فعال باشند.
 
-### اقدام لازم مالک مخزن
+لینک آکادمی پس از موفقیت اجرای GitHub Actions:
+`https://barsamjadidian-cloud.github.io/barbari/python/`
 
-اتصال فعلی GitHub هنگام فعال‌کردن Pages پاسخ `403 Resource not accessible by integration` می‌دهد. انتشار تا رفع این محدودیت تأییدشده نیست.
-
-1. از پنل GitHub، روی شاخه `arena/01a09876-barbari` فایل `.github/workflows/deploy-pages.yml` را با محتوای `deployment/github-pages.yml` ایجاد کنید. سپس به **Settings → Pages** بروید.
-2. در **Build and deployment → Source** گزینه **GitHub Actions** را انتخاب کنید.
-3. در **Actions → Deploy BARBARI storefront → Run workflow** شاخه `arena/01a09876-barbari` را انتخاب و گردش کار را اجرا کنید.
-4. اگر محیط `github-pages` فقط شاخه پیش‌فرض را مجاز می‌داند، در **Settings → Environments → github-pages** همین شاخه را مجاز کنید.
-5. اگر دسترسی اتصال Arena کافی نیست، اتصال GitHub را در Arena مجدداً برقرار کنید. نیازی به ارسال رمز یا توکن در چت نیست.
-
-آدرس مورد انتظار **پس از موفقیت انتشار**:
-`https://barsamjadidian-cloud.github.io/barbari/`
+موتور اجرای کد از Pyodide و CDN بارگیری می‌شود؛ برای اجرای پایتون در مرورگر اتصال اینترنت لازم است. پیشرفت دوره، امتیاز و نام گواهینامه فقط به‌صورت محلی در مرورگر ذخیره می‌شوند. پرداخت، حساب کاربری یا ارسال ایمیل واقعی در این نسخه پیاده‌سازی نشده است.
 
 ## تست
 
