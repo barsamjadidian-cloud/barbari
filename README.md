@@ -39,12 +39,12 @@ npm run build:pages
 
 اسکریپت `scripts/build-pages.mjs` خروجی استاتیک عمومی را می‌سازد و پوشه `public/` را در خروجی منتشر می‌کند؛ بنابراین آکادمی پایتون نیز همراه ویترین در دسترس خواهد بود. فایل‌های محیطی، مسیرهای API و صفحات خصوصی قدیمی وارد خروجی Pages نمی‌شوند. پوشه ساخت در Git ثبت نمی‌شود.
 
-قالب گردش کار انتشار در `deployment/github-pages.yml` نگهداری می‌شود. تلاش برای ثبت فایل اجرایی `.github/workflows/deploy-pages.yml` از اتصال GitHub با خطای مجوز `workflows` رد شد؛ به همین دلیل Pages هنوز از این شاخه فعال نشده است. مالک مخزن باید محتوای قالب را با رابط GitHub به `.github/workflows/deploy-pages.yml` اضافه کند و در **Settings → Pages → Build and deployment → Source** گزینه **GitHub Actions** را انتخاب کند. گردش کار برای شاخه کاری فعلی تنظیم شده است.
+برای انتشار فوری و بدون workflow، در **Settings → Pages** گزینه **Deploy from a branch** را انتخاب کنید، شاخه `arena/b384154e-barbari` و پوشه `/(root)` را برگزینید و ذخیره کنید. فایل ریشه سایت به آکادمی هدایت می‌کند و نسخه قابل‌انتشار آن در `python/index.html` است. فایل اصلی پروژه نیز در `public/python/index.html` قرار دارد.
 
-لینک مقصد آکادمی پس از راه‌اندازی Pages و اجرای موفق workflow:
+اتصال GitHub این نشست اجازه فعال‌سازی Pages از طریق API یا ثبت workflow را نداد (خطای دسترسی 403)، بنابراین تنظیم آخر باید از رابط Settings مخزن انجام شود. پس از ذخیره تنظیمات و تکمیل انتشار GitHub Pages، لینک آکادمی این است:
 `https://barsamjadidian-cloud.github.io/barbari/python/`
 
-فایل برنامه روی GitHub در دسترس است: `public/python/index.html`.
+قالب جایگزین GitHub Actions در `deployment/github-pages.yml` قرار دارد.
 
 موتور اجرای کد از Pyodide و CDN بارگیری می‌شود؛ برای اجرای پایتون در مرورگر اتصال اینترنت لازم است. پیشرفت دوره، امتیاز و نام گواهینامه فقط به‌صورت محلی در مرورگر ذخیره می‌شوند. پرداخت، حساب کاربری یا ارسال ایمیل واقعی در این نسخه پیاده‌سازی نشده است.
 
